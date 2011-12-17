@@ -1,0 +1,26 @@
+
+For background on CheerLights see: http://www.cheerlights.com/
+
+There are some notes on my implementation here: http://wiki.milwaukeemakerspace.org/projects/cheerlight
+
+The CheerLights.pde file is an Arduino sketch you'll want to run on an Arduino-compatible microcontroller.
+
+The Arduino will need to be connected to a computer with Internet access via USB.
+
+The cheerlights.pl Perl script will loop forever (well, until you kill it, or it dies) and request the file at http://api.thingspeak.com/channels/1417/field/1/last.txt which will tell it the current color. The Perl script then sends a numeric code to the Arduino and the Arduino makes the ShiftBrite display that color. Simple!
+
+On the Arduino side you will need the HughesyShiftBrite library: http://code.google.com/p/shiftbritehughesyarduino/
+
+On the Perl side you will need the Device::SerialPort and LWP::Simple modules.
+
+To connect the ShiftBrite to the Arduino you just run its GND to the GND on the Arduino, the V+ to the 5V on the Arduino, and the run DI, LI, CI, EI to digital pins 10, 11, 12, 13 respectively, on the Arduino. Just 6 wires in total connected to the left side of the ShiftBrite. (See the file Connection.jpg)
+
+
+
+This code is released under the GPL. 
+
+Pete Prodoehl
+pete@rasterweb.net
+http://rasterweb.net/raster/
+Twitter: @raster
+
